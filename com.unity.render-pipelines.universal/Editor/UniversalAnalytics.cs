@@ -38,7 +38,7 @@ namespace UnityEditor.Rendering.Universal
                 return;
 
             // Needd to check if this isn't null
-            UniversalRenderPipelineAsset rendererAsset = GraphicsSettings.defaultRenderPipeline as UniversalRenderPipelineAsset;
+            UniversalRenderPipelineAsset rendererAsset = GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset;
 
             if (rendererAsset != null)
             {
@@ -68,9 +68,9 @@ namespace UnityEditor.Rendering.Universal
 
                 var data = new AnalyticsData()
                 {
-                    renderer_data = "{"+String.Join(", ", rendererDatas.ToArray())+"}",
+                    renderer_data = rendererDatas.ToArray(),
                     renderer_data_amount = rendererDataAmount,
-                    renderer_features = "{"+String.Join(", ", renderFeatures.ToArray())+"}",
+                    renderer_features = renderFeatures.ToArray(),
                     renderer_features_amount = rendererFeaturesAmount,
                     main_light_rendering_mode = mainLightMode,
                     additional_light_rendering_mode = additionalLightMode,
@@ -82,9 +82,9 @@ namespace UnityEditor.Rendering.Universal
 
         struct AnalyticsData
         {
-            public string renderer_data;
+            public string[] renderer_data;
             public int renderer_data_amount;
-            public string renderer_features;
+            public string[] renderer_features;
             public int renderer_features_amount;
             public string main_light_rendering_mode;
             public string additional_light_rendering_mode;
